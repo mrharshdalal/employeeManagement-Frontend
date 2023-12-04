@@ -8,13 +8,13 @@ import { environment } from "../environments/environments";
     providedIn: 'root'
 })
 export class EmployeeService{
-    private apiServerUrl = "http://localhost:8080/employee/";
+    private apiServerUrl = environment.apiBaseUrl;
 
     constructor(private http: HttpClient){
 
     }
     public getEmployee(): Observable<Employee[]>{
-        return this.http.get<any>(`${this.apiServerUrl}getAllEmployees`);
+        return this.http.get<any>(`${this.apiServerUrl}/employee/getAllEmployees`);
     }
     public addEmployee(employee: Employee): Observable<Employee>{
         return this.http.post<Employee>(`${this.apiServerUrl}/employee/addEmployee`, employee);
